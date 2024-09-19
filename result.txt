@@ -1,0 +1,31 @@
+
+> gas-template@1.0.0 build
+> webpack
+
+asset bundle.js 59.4 KiB [emitted] (name: main)
+runtime modules 891 bytes 4 modules
+cacheable modules 42.5 KiB
+  modules with errors 3.71 KiB [errors]
+    ./src/listapp.ts 1.65 KiB [built] [code generated] [1 error]
+    ./src/settingsheet2.ts 2.07 KiB [built] [code generated] [1 error]
+  + 19 modules
+
+ERROR in /home/ykominami/repo_ykominami/GAS/gasgdrivedl4/src/listapp.ts
+./src/listapp.ts 18:17-27
+[tsl] ERROR in /home/ykominami/repo_ykominami/GAS/gasgdrivedl4/src/listapp.ts(18,18)
+      TS2554: Expected 1 arguments, but got 0.
+ts-loader-default_e3b0c44298fc1c14
+ @ ./src/Code.ts 3:0-36 17:24-31
+ @ ./src/index.ts 1:0-92 2:15-20 3:16-22 4:17-24 5:19-28 6:19-28 7:19-28 8:19-28
+
+ERROR in /home/ykominami/repo_ykominami/GAS/gasgdrivedl4/src/settingsheet2.ts
+./src/settingsheet2.ts 33:15-33
+[tsl] ERROR in /home/ykominami/repo_ykominami/GAS/gasgdrivedl4/src/settingsheet2.ts(33,16)
+      TS2554: Expected 1 arguments, but got 0.
+ts-loader-default_e3b0c44298fc1c14
+ @ ./src/infolistx.ts 3:0-48 34:33-46
+ @ ./src/listapp.ts 3:0-40 13:30-39
+ @ ./src/Code.ts 3:0-36 17:24-31
+ @ ./src/index.ts 1:0-92 2:15-20 3:16-22 4:17-24 5:19-28 6:19-28 7:19-28 8:19-28
+
+webpack 5.94.0 compiled with 2 errors in 3269 ms

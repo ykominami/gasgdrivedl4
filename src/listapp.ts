@@ -58,7 +58,7 @@ export class Listapp {
       }
     }
     else {
-      Util.log("listapp get_list_from_bookmarktable values=null")
+      Logger.log("listapp get_list_from_bookmarktable values=null")
     }
   }
 }
