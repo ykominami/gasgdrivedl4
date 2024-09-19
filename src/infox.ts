@@ -1,7 +1,7 @@
 import { SpreadSheetx } from "./spreadsheetx";
 import { SSheet } from "./ssheet"
 import { Util } from "./util";
-// import { Item } from "./item";
+import { Item } from "./item";
 import { Itemx } from "./itemx";
 import { SearchItem } from "./searchItem";
 import { Itemvalue } from "./itemvalue";
@@ -54,9 +54,11 @@ export class Infox {
         const INDEX_ID: number = 4;
         const INDEX_KIND: number = 0
         const INDEX_YEAR: number = 1
-        // const INDEX_TITLE: number = 2
+        //@ts-ignore TS6133: 'INDEX_TITLE' is declared but its value is never read.
+        const INDEX_TITLE: number = 2
         const INDEX_KIND2: number = 3
-        // const INDEX_URL: number = 6
+        //@ts-ignore TS6133: 'INDEX_URL' is declared but its value is never read.
+        const INDEX_URL: number = 6
 
         const value_item: Itemvalue = new Itemvalue({ index: INDEX_ID, value: "" });
         const search_items: Itemx[] = [];

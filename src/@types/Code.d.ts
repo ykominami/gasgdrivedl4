@@ -26,7 +26,3 @@ interface InfoParam {
   kind2: StringOrNull;
   year: StringOrNull;
 }
-/*
-type StringStringAssoc = Record<string,string>;
-type StringSSA= Record<string,StringStringAssoc>;
-*/
