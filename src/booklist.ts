@@ -16,7 +16,7 @@ export class Booklist {
     constructor(infox: Infox) {
         this.infox = infox
         this.param = null;
-        this.ss_id = ""
+        this.ss_id = "";
         this.ss = null
         this.s_sheet = null
         this.sheet_name = ""

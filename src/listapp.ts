@@ -46,10 +46,6 @@ export class Listapp {
     item.add(sheetName, bkurl);
 
     const values = bt.getValues();
-    Logger.log(`bkurl=${bkurl}`);
-    Logger.log(`sheetName=${sheetName}`);
-    Logger.log(' | get_list_from_bookmarktable | ');
-    Logger.log( JSON.stringify(values) );
     if (values !== null) {
       for (const elem of values) {
         const str_0: string = Util.son2string(elem[0]);
