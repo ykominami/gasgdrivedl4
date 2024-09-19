@@ -10,6 +10,7 @@
     "push:watch": "clasp push --watch",
     "deploy": "webpack && cpx \"./src/**/*.html\" ./dist && cpx \"./src/**/*.json\" ./dist && clasp push"
   },
+
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -19,6 +20,7 @@
     "@types/node": "^18.7.18",
     "cpx": "^1.5.0",
     "gas-webpack-plugin": "^2.3.0",
+    "ts-jest": "^29.2.5",
     "ts-loader": "^9.4.1",
     "ts-node": "^10.9.2",
     "typescript": "^4.8.3",
