@@ -1,3 +1,11 @@
 node_modules/
 dist/bundle.js
 .clasp.json
+a.js
+a.ts
+b.ts
+c.ts
+d.ts
+b.js
+z.js
+
