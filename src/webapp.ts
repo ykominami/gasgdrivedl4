@@ -95,7 +95,7 @@ export class Webapp {
         this.datax.ss_id = target_ss_id;
     }
 
-    getHeaderRowNumx(sheet: GoogleAppsScript.Spreadsheet.Sheet) {
+    getHeaderRowNumx(sheet: GoogleAppsScript.Spreadsheet.Sheet): number {
         const frozen: number = sheet.getFrozenRows()
         if (frozen == 0) {
             return 1

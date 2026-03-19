@@ -54,7 +54,7 @@ export class SpreadSheetx {
       Util.log(`##################### SpreadSheetx constructor openByUrl F this.ss_url=null ss=${xstr}`)
     }
   }
-  getSheet(sheet_name: string): SSheet {
+  getSheet(sheet_name: string): SSheet | undefined {
     let s_sheet = this.s_sheet_assoc[sheet_name]
     let xstr = "";
     if (s_sheet === undefined) {
