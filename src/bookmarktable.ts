@@ -13,7 +13,7 @@ export class BookmarkTable {
     // Logger.log("############### BookmarkTable constructor call SpreadSheetx() without arg");
     this.ssx = new SpreadSheetx("");
     this.ssx.openByUrl(this.url);
-    this.s_sheet = this.ssx.getSheet(this.sheetName);
+    this.s_sheet = this.ssx.getSheet(this.sheetName) ?? new SSheet(null, this.sheetName);
     // Util.log(`BookmarkTable url=${url}|sheetName=${sheetName}`)
   }
   reform(values: string[][]): string[][] {
