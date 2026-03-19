@@ -6,7 +6,7 @@ export class Util {
     static BLANK_LINE = 10;
     static NOT_BLANK_LINE = 11;
 
-    static log_init() {
+    static log_init(): void {
 
     }
     static log(message: string): string {
