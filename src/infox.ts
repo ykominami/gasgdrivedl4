@@ -19,9 +19,20 @@ export class Infox {
         this.CONST_SS_ID = "1KtGdnnpj8k_bkxfYITalK193nRlVXiN0o_YiASO5KNs";
         this.sheet_name = sheet_name;
         this.ssxx = new SpreadSheetx(this.CONST_SS_ID);
-        this.ssheet = this.ssxx.getSheet(this.sheet_name);
-        this.ssheet.fetchAndSetDataRange();
-        this.values = this.ssheet.getValues();
+        this.ssheet = new SSheet(null, this.sheet_name);
+        const canGetSheet = this.sheet_name !== "" && this.ssxx.ss !== null;
+        if (canGetSheet) {
+            const ssheet = this.ssxx.getSheet(this.sheet_name);
+            if (ssheet !== undefined) {
+                this.ssheet = ssheet;
+            }
+        }
+        if (this.ssheet.sheet !== null) {
+            this.ssheet.fetchAndSetDataRange();
+            this.values = this.ssheet.getValues();
+        } else {
+            this.values = [[""]];
+        }
     }
     getValues(): string[][] {
         // Util.log(`Infox getValues() 1`)
