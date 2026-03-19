@@ -9,7 +9,7 @@ export class Booklist {
     ss_id: string
     sheet_name: string
     ss: SpreadSheetx | null
-    s_sheet: SSheet | null
+    s_sheet: SSheet | undefined
     values: string[][]
     error: { history: string[] }
 
@@ -18,7 +18,7 @@ export class Booklist {
         this.param = null;
         this.ss_id = ""
         this.ss = null
-        this.s_sheet = null
+        this.s_sheet = undefined
         this.sheet_name = ""
         this.values = [["BookInfo"]]
         this.error = { history: ["Booklist-A-1 init"] }
@@ -35,6 +35,9 @@ export class Booklist {
         xstr = this.sheet_name == null ? "" : this.sheet_name;
         Logger.log(`############### Booklist getVlues this.sheet_name=${xstr}`)
         this.s_sheet = this.ss.getSheet(this.sheet_name)
+        if (this.s_sheet === undefined) {
+            return []
+        }
         this.s_sheet.fetchAndSetDataRange();
         this.values = this.s_sheet.getValues(); //  as string[][]
         if (this.values.length <= 1) {
