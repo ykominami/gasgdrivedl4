@@ -1,9 +1,12 @@
 import { Infox } from "./infox";
 import { SpreadSheetx } from "./spreadsheetx";
 import { SSheet } from "./ssheet";
+import { StringMessage } from "./stringmessage";
 import { Util } from "./util";
 
 export class Booklist {
+    private static readonly LOG_PREFIX = "############### Booklist getVlues";
+    private static readonly MSG_SSHEET_UNDEFINED = "s_sheet is undefined, fetchAndSetDataRange cannot be called";
     infox: Infox
     param: InfoParam | null
     ss_id: string
@@ -29,14 +32,26 @@ export class Booklist {
         this.sheet_name = sheet_name
         this.values = [["empty"]]
         this.ss_id = this.infox.getSSId(param);
+        StringMessage.addMessage(
+            `Booklist getValues0: this.ss_id=${this.ss_id} this.sheet_name=${this.sheet_name} ${Booklist.MSG_SSHEET_UNDEFINED}`
+        )
         xstr = this.ss_id == null ? "(null)" : this.ss_id
-        Logger.log(`############### Booklist getVlues (from getSSId()) this.ss_id=${xstr}`)
+        Logger.log(`${Booklist.LOG_PREFIX} (from getSSId()) this.ss_id=${xstr}`)
         this.ss = new SpreadSheetx(this.ss_id)
         xstr = this.sheet_name == null ? "" : this.sheet_name;
-        Logger.log(`############### Booklist getVlues this.sheet_name=${xstr}`)
+        Logger.log(`${Booklist.LOG_PREFIX} this.sheet_name=${xstr}`)
         this.s_sheet = this.ss.getSheet(this.sheet_name)
         if (this.s_sheet === undefined) {
-            return []
+            StringMessage.addMessage(
+                `Booklist getValues: this.ss_id=${this.ss_id} this.sheet_name=${this.sheet_name} ${Booklist.MSG_SSHEET_UNDEFINED}`
+            )
+            return [StringMessage.getMessages()]
+        }
+        if (this.s_sheet.sheet === null) {
+            StringMessage.addMessage(
+                "Booklist getValues: s_sheet.sheet is null, fetchAndSetDataRange cannot be called properly"
+            )
+            return [StringMessage.getMessages()]
         }
         this.s_sheet.fetchAndSetDataRange();
         this.values = this.s_sheet.getValues(); //  as string[][]
@@ -51,14 +66,25 @@ export class Booklist {
             // return [ this.error.history ]
         }
     }
+    getAsJsonWithError(): string {
+        const payload = {
+            values: this.values,
+            messages: StringMessage.getMessages()
+        };
+        return JSON.stringify(payload);
+    }
     getAsJson(): string {
-        // const json = Util.getAsJSON(this.values.map((item) => item.join('')).join(""));
-        const json = Util.getAsJSON(this.values);
-        // const json = Util.getAsJSON(Object.keys(this.itemArray).map((key) => [key, this.values[key].name, this.values[key].url]));
-        return json;
+        const payload = this.values
+        return JSON.stringify(payload);
+    }
+    getAsHtmlWithError(): string {
+        // htmlの中にはjsonを埋め込めないので、jsonを文字列に変換して埋め込む
+        const json = this.getAsJsonWithError();
+        return `<pre>${json}</pre>`;
     }
     getAsHtml(): string {
-        // return "getAsHtml 72";
-        return this.values.join("");
+        // htmlの中にはjsonを埋め込めないので、jsonを文字列に変換して埋め込む
+        const json = this.getAsJson();
+        return `<pre>${json}</pre>`;
     }
 }

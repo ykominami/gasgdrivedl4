@@ -1,4 +1,5 @@
 import { SSheet } from "./ssheet"
+import { StringMessage } from "./stringmessage"
 import { Util } from "./util"
 
 
@@ -9,6 +10,7 @@ export class SpreadSheetx {
   s_sheet_assoc: { [index: string]: SSheet }
   constructor(ss_id: string) {
     this.ss_id = ss_id;
+    StringMessage.addMessage(`SpreadSheetx constructor ss_id=${ss_id}`);
     this.ss_url = "";
     this.ss = null
     let xstr = "";

@@ -12,6 +12,8 @@ import { Listapp } from "./listapp"
 export class Webapp {
     CONST_SS_ID: string
     CONST_SHEET_NAME: string
+    CONST_SHEET_SS3: string
+    CONST_SHEET_SS4: string
     ss_id: string
     sheet_name: string
     datax: Datax
@@ -19,6 +21,8 @@ export class Webapp {
     constructor() {
         this.CONST_SS_ID = "1KtGdnnpj8k_bkxfYITalK193nRlVXiN0o_YiASO5KNs";
         this.CONST_SHEET_NAME = "ss2";
+        this.CONST_SHEET_SS3 = "ss3";
+        this.CONST_SHEET_SS4 = "ss4";
         this.ss_id = this.CONST_SS_ID
         this.sheet_name = this.CONST_SHEET_NAME
         this.datax = new Datax();
@@ -49,9 +53,8 @@ export class Webapp {
         return sheet;
     }
     getSheetFromBaseSS(sheetName: string): GoogleAppsScript.Spreadsheet.Sheet | null {
-        const base_ss_id = "1KtGdnnpj8k_bkxfYITalK193nRlVXiN0o_YiASO5KNs";
-        Logger.log(`base_ss_id=${base_ss_id}`);
-        return this.getOrCreateSheet(base_ss_id, sheetName)
+        Logger.log(`base_ss_id=${this.CONST_SS_ID}`);
+        return this.getOrCreateSheet(this.CONST_SS_ID, sheetName)
     }
 
     getValueInSheet_1(sheet: GoogleAppsScript.Spreadsheet.Sheet | null): void {
@@ -95,7 +98,7 @@ export class Webapp {
         this.datax.ss_id = target_ss_id;
     }
 
-    getHeaderRowNumx(sheet: GoogleAppsScript.Spreadsheet.Sheet): number {
+    getHeaderRowNumx(sheet: GoogleAppsScript.Spreadsheet.Sheet) {
         const frozen: number = sheet.getFrozenRows()
         if (frozen == 0) {
             return 1
@@ -106,13 +109,13 @@ export class Webapp {
     getSsidFromBaseSS(sheetName: string): StringOrNull {
         const sheet = this.getSheetFromBaseSS(sheetName);
         this.datax.sheet = sheet;
-        if (sheetName == "ss2") {
+        if (sheetName == this.CONST_SHEET_NAME) {
             this.getValueInSheet_1(sheet)
         }
-        else if (sheetName == "ss3") {
+        else if (sheetName == this.CONST_SHEET_SS3) {
             this.getValueInSheet_2(sheet)
         }
-        else if (sheetName == "ss4") {
+        else if (sheetName == this.CONST_SHEET_SS4) {
             this.getValueInSheet_3(sheet)
         }
         return this.datax.ss_id;
@@ -143,7 +146,7 @@ export class Webapp {
     do_post(e: GoogleAppsScript.Events.DoPost): GASHtmlTextOutputType {
         // do_post(e: GoogleAppsScript.Events.AppsScriptHttpRequestEvent): GASHtmlTextOutputType {
         const postContent: string = e.postData.contents;
-        const sheetName = "ss4";
+        const sheetName = this.CONST_SHEET_SS4;
         const ss_id: StringOrNull = this.getSsidFromBaseSS(sheetName);
         let ss_idx: string = "";
         if (ss_id !== null) {
@@ -193,7 +196,7 @@ export class Webapp {
                 content = this.outputAsText(str);
                 break;
             case "c":{
-                const infox = new Infox("ss2");
+                const infox = new Infox(this.CONST_SHEET_NAME);
 
                 const booklist = new Booklist(infox)
                 let kind2_str: string;
@@ -248,7 +251,7 @@ export class Webapp {
         return this.outputAsText(str);
     }
     testDataX(): GASHtmlTextOutputType {
-        const info_sheet_name = "ss2";
+        const info_sheet_name = this.CONST_SHEET_NAME;
         const kind = "kindle";
         const kind0 = info_sheet_name
         const kind1 = "book";
@@ -266,7 +269,7 @@ export class Webapp {
         return output;
     }
     testData2(): GASHtmlTextOutputType {
-        const info_sheet_name = "ss2";
+        const info_sheet_name = this.CONST_SHEET_NAME;
         const kind = "api";
         const kind0 = info_sheet_name;
         const kind1 = "book";
