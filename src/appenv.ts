@@ -11,17 +11,19 @@ export class Appenv {
   folderId: string;
   startPointOfYear: StartPointOfYearArray;
   constructor() {
+    const GSHEET_URL_PREFIX = "https://docs.google.com/spreadsheets/d/";
+    const GSHEET_URL_EDIT_SUFFIX = "/edit#gid=";
     this.program_name = "daily_log9";
     // daily_log0 URL0
     this.bookmarkListUrl =
-      "https://docs.google.com/spreadsheets/d/1KtGdnnpj8k_bkxfYITalK193nRlVXiN0o_YiASO5KNs/edit#gid=1962904267";
+      GSHEET_URL_PREFIX + "1KtGdnnpj8k_bkxfYITalK193nRlVXiN0o_YiASO5KNs" + GSHEET_URL_EDIT_SUFFIX + "1962904267";
     // daily_log5 URL0
     this.bookmarkListSheetName = "URLS0";
     // this.bookmarkListSheetName = "URLS";
     // this.bookmarkListSheetName = "URLS2";
     // sheets-setting-2
     this.settingSheet2Url =
-      "https://docs.google.com/spreadsheets/d/1YzmAsCuwQq3S0KveQhSDm-WcGe6ufkFmmURhhqoa1kI/edit#gid=1674026248";
+      GSHEET_URL_PREFIX + "1YzmAsCuwQq3S0KveQhSDm-WcGe6ufkFmmURhhqoa1kI" + GSHEET_URL_EDIT_SUFFIX + "1674026248";
     this.sheetNameOfFile = "sheet2";
     this.assocArray = {};
     this.dataRange = { x: 15, y: 1, height: 100, width: 9 };
